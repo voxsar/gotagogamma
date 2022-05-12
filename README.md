@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Gota Go Gamma Game
+
+Gota Go Gama is strategy game, where you are to lead a group of protestors against a corrupt government, you start the game and it gives you 20 days (game time) to successfully create a peaceful protest group and grow in numbers
+
+The objectives is to create a harmonious balance between different communities, grow them before an imminent planned attack by a pro government group attacks the protest site, if you successfully grow the community the game will end with non violence and Pro Government leader resigning from their post
+
+You will start the game with the pre-progress where the protest is already established, you have a few protestors and a high resistance against the protestors from law enforcement who majorly corrupt and will kill protestors under the guise of violence
+
+If you gain enough loyalty points you may be able to turn some of these officers to your cause, you must achieve most objectives, during the first 3/4 of the game in order to have a large enough crowd to face off the mobs
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
