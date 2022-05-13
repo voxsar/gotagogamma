@@ -43,7 +43,7 @@ class ResourceController extends Controller
         $data = array(
             'resources' => auth()->user()->resources,
         );
-        return view("resources.index", $data);
+        return view("resources.myindex", $data);
     }
 
     /**
