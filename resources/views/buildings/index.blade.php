@@ -11,6 +11,7 @@
 
             @endforelse
             <th scope="col">Build Time</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,9 @@
                 @endforelse
                 <td scope="col">
                     <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * 1)->format('H:i:s')}}
+                </td>
+                <td scope="col">
+                    <a class="btn btn-primary btn-sm w-100" href="{{route("buildings.upgrade", $building)}}">Upgrade</a>
                 </td>
             </tr>
         @empty

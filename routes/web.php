@@ -31,6 +31,7 @@ Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->nam
 Route::middleware(['auth'])->group(function () {
     Route::get('buildings/my', [BuildingController::class, 'myindex'])->name("buildings.myindex");
     Route::get('buildings/my/{building}', [BuildingController::class, 'myshow'])->name("buildings.myshow");
+    Route::get('buildings/upgrade/{building}', [BuildingController::class, 'upgrade'])->name("buildings.upgrade");
 
     Route::get('resources/my', [ResourceController::class, 'myindex'])->name("resources.myindex");
     Route::get('resources/my/{resource}', [ResourceController::class, 'myshow'])->name("resources.myshow");

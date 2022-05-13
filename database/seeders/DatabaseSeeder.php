@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 1, 'resource_id' => 1, 'cost' => -320],
             ['building_id' => 1, 'resource_id' => 2, 'cost' => -240],
             ['building_id' => 1, 'resource_id' => 3, 'cost' => 4],
-            ['building_id' => 1, 'resource_id' => 4, 'cost' => -2],
+            ['building_id' => 1, 'resource_id' => 4, 'cost' => 2],
             ['building_id' => 1, 'resource_id' => 5, 'cost' => 20],
         ]);
 
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 2, 'resource_id' => 1, 'cost' => -140],
             ['building_id' => 2, 'resource_id' => 2, 'cost' => -160],
             ['building_id' => 2, 'resource_id' => 3, 'cost' => 8],
-            ['building_id' => 2, 'resource_id' => 4, 'cost' => -3],
+            ['building_id' => 2, 'resource_id' => 4, 'cost' => 3],
             ['building_id' => 2, 'resource_id' => 5, 'cost' => 78],
         ]);
 
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 3, 'resource_id' => 1, 'cost' => -780],
             ['building_id' => 3, 'resource_id' => 2, 'cost' => -460],
             ['building_id' => 3, 'resource_id' => 3, 'cost' => 0],
-            ['building_id' => 3, 'resource_id' => 4, 'cost' => -30],
+            ['building_id' => 3, 'resource_id' => 4, 'cost' => 30],
             ['building_id' => 3, 'resource_id' => 5, 'cost' => -20],
         ]);
 
@@ -205,9 +205,9 @@ class DatabaseSeeder extends Seeder
         DB::table('resource_users')->insert([
             ['user_id' => 1, 'resource_id' => 1, 'amount' => 1000],
             ['user_id' => 1, 'resource_id' => 2, 'amount' => 1000],
-            ['user_id' => 1, 'resource_id' => 3, 'amount' => 1000],
-            ['user_id' => 1, 'resource_id' => 4, 'amount' => 1000],
-            ['user_id' => 1, 'resource_id' => 5, 'amount' => 1000],
+            ['user_id' => 1, 'resource_id' => 3, 'amount' => 1],
+            ['user_id' => 1, 'resource_id' => 4, 'amount' => 1],
+            ['user_id' => 1, 'resource_id' => 5, 'amount' => 1],
         ]);
     }
 }
