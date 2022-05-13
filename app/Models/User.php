@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function resources()
+    {
+        # code...
+        return $this->belongsToMany("App\Models\Resource", "resource_users", "user_id", "resource_id")->withPivot("amount");
+    }
 }

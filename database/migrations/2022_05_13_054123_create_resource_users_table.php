@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('resource_users', function (Blueprint $table) {
             $table->foreignId("resource_id")->on("resources");
             $table->foreignId("user_id")->on("users");
+            $table->integer("amount");
             $table->primary(['resource_id', 'user_id']);
             $table->timestamps();
         });

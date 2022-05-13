@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(1)->create([
+            'id' => 1,
+            'email' => 'voxsar@gmail.com'
+        ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -118,6 +121,14 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 7, 'resource_id' => 3, 'cost' => 190],
             ['building_id' => 7, 'resource_id' => 4, 'cost' => 30],
             ['building_id' => 7, 'resource_id' => 5, 'cost' => 200],
+        ]);
+
+        DB::table('resource_users')->insert([
+            ['user_id' => 1, 'resource_id' => 1, 'amount' => 1000],
+            ['user_id' => 1, 'resource_id' => 2, 'amount' => 1000],
+            ['user_id' => 1, 'resource_id' => 3, 'amount' => 1000],
+            ['user_id' => 1, 'resource_id' => 4, 'amount' => 1000],
+            ['user_id' => 1, 'resource_id' => 5, 'amount' => 1000],
         ]);
     }
 }
