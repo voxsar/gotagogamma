@@ -39,7 +39,6 @@ class DatabaseSeeder extends Seeder
             ['id' => 11, 'name' => 'Red Cross', 'base' => 6860, 'multiplier' => 1030],
             ['id' => 12, 'name' => 'Small Vendors', 'base' => 415, 'multiplier' => 58],
             ['id' => 13, 'name' => 'Large Vendors', 'base' => 7015, 'multiplier' => 23],
-            ['id' => 14, 'name' => 'Uganda', 'base' => 7015, 'multiplier' => 23],
         ]);
 
         DB::table('resources')->insert([
@@ -121,6 +120,54 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 7, 'resource_id' => 3, 'cost' => 190],
             ['building_id' => 7, 'resource_id' => 4, 'cost' => 30],
             ['building_id' => 7, 'resource_id' => 5, 'cost' => 200],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 8, 'resource_id' => 1, 'cost' => -654],
+            ['building_id' => 8, 'resource_id' => 2, 'cost' => -1320],
+            ['building_id' => 8, 'resource_id' => 3, 'cost' => 300],
+            ['building_id' => 8, 'resource_id' => 4, 'cost' => 70],
+            ['building_id' => 8, 'resource_id' => 5, 'cost' => 170],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 9, 'resource_id' => 1, 'cost' => -650],
+            ['building_id' => 9, 'resource_id' => 2, 'cost' => -380],
+            ['building_id' => 9, 'resource_id' => 3, 'cost' => 160],
+            ['building_id' => 9, 'resource_id' => 4, 'cost' => 60],
+            ['building_id' => 9, 'resource_id' => 5, 'cost' => 150],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 10, 'resource_id' => 1, 'cost' => -1790],
+            ['building_id' => 10, 'resource_id' => 2, 'cost' => -3650],
+            ['building_id' => 10, 'resource_id' => 3, 'cost' => 430],
+            ['building_id' => 10, 'resource_id' => 4, 'cost' => 20],
+            ['building_id' => 10, 'resource_id' => 5, 'cost' => 250],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 11, 'resource_id' => 1, 'cost' => -1280],
+            ['building_id' => 11, 'resource_id' => 2, 'cost' => -2310],
+            ['building_id' => 11, 'resource_id' => 3, 'cost' => 250],
+            ['building_id' => 11, 'resource_id' => 4, 'cost' => 0],
+            ['building_id' => 11, 'resource_id' => 5, 'cost' => 270],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 12, 'resource_id' => 1, 'cost' => -1400],
+            ['building_id' => 12, 'resource_id' => 2, 'cost' => -900],
+            ['building_id' => 12, 'resource_id' => 3, 'cost' => 390],
+            ['building_id' => 12, 'resource_id' => 4, 'cost' => 50],
+            ['building_id' => 12, 'resource_id' => 5, 'cost' => 270],
+        ]);
+
+        DB::table('building_costs')->insert([
+            ['building_id' => 13, 'resource_id' => 1, 'cost' => -2750],
+            ['building_id' => 13, 'resource_id' => 2, 'cost' => -1862],
+            ['building_id' => 13, 'resource_id' => 3, 'cost' => 790],
+            ['building_id' => 13, 'resource_id' => 4, 'cost' => 200],
+            ['building_id' => 13, 'resource_id' => 5, 'cost' => 320],
         ]);
 
         DB::table('resource_users')->insert([

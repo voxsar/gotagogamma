@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BuildingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
+Route::get('buildings/{building}', [BuildingController::class, 'show'])->name("buildings.show");
 
 require __DIR__.'/auth.php';
