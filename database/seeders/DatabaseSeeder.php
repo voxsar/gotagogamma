@@ -26,19 +26,19 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         DB::table('buildings')->insert([
-            ['id' => 1, 'name' => 'Banner Points', 'base' => 145, 'multiplier' => 325],
-            ['id' => 2, 'name' => 'Donation Collection Points', 'base' => 402, 'multiplier' => 600],
-            ['id' => 3, 'name' => 'One Galle Face Restuarants', 'base' => 3545, 'multiplier' => 620],
-            ['id' => 4, 'name' => 'Food Station', 'base' => 1020, 'multiplier' => 60],
-            ['id' => 5, 'name' => 'Maliban', 'base' => 1610, 'multiplier' => 350],
-            ['id' => 6, 'name' => 'University Rally Point', 'base' => 624, 'multiplier' => 215],
-            ['id' => 7, 'name' => 'Rally Point', 'base' => 1632, 'multiplier' => 230],
-            ['id' => 8, 'name' => 'Lawyers Tent', 'base' => 1715, 'multiplier' => 323],
-            ['id' => 9, 'name' => 'Tents', 'base' => 4020, 'multiplier' => 560],
-            ['id' => 10, 'name' => 'Library', 'base' => 3534, 'multiplier' => 810],
-            ['id' => 11, 'name' => 'Red Cross', 'base' => 6860, 'multiplier' => 1030],
-            ['id' => 12, 'name' => 'Small Vendors', 'base' => 415, 'multiplier' => 58],
-            ['id' => 13, 'name' => 'Large Vendors', 'base' => 7015, 'multiplier' => 23],
+            ['id' => 1, 'name' => 'Banner Points', 'base' => 30, 'multiplier' => 118],
+            ['id' => 2, 'name' => 'Donation Collection Points', 'base' => 80, 'multiplier' => 600],
+            ['id' => 3, 'name' => 'One Galle Face Restuarants', 'base' => 160, 'multiplier' => 620],
+            ['id' => 4, 'name' => 'Food Station', 'base' => 180, 'multiplier' => 60],
+            ['id' => 5, 'name' => 'Maliban', 'base' => 200, 'multiplier' => 350],
+            ['id' => 6, 'name' => 'University Rally Point', 'base' => 40, 'multiplier' => 215],
+            ['id' => 7, 'name' => 'Rally Point', 'base' => 260, 'multiplier' => 230],
+            ['id' => 8, 'name' => 'Lawyers Tent', 'base' => 120, 'multiplier' => 323],
+            ['id' => 9, 'name' => 'Tents', 'base' => 180, 'multiplier' => 560],
+            ['id' => 10, 'name' => 'Library', 'base' => 380, 'multiplier' => 810],
+            ['id' => 11, 'name' => 'Red Cross', 'base' => 200, 'multiplier' => 1030],
+            ['id' => 12, 'name' => 'Small Vendors', 'base' => 120, 'multiplier' => 58],
+            ['id' => 13, 'name' => 'Large Vendors', 'base' => 480, 'multiplier' => 23],
         ]);
 
         DB::table('resources')->insert([
