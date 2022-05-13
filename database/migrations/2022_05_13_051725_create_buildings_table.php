@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->integer("base");
             $table->integer("multiplier");
+            $table->text("description");
             $table->timestamps();
         });
     }

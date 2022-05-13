@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="mt-5"></div>
-            <p>{{$building->description}}</p>
+            <p contenteditable="">{!!$building->description!!}</p>
             <div class="mt-5"></div>
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-hover table-bordered text-white">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
             <div class="mt-5"></div>
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-hover table-bordered text-white">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

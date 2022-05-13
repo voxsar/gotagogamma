@@ -14,9 +14,9 @@
                     Resources
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">My Resources</a></li>
+                    <li><a class="dropdown-item" href="{{route("resources.myindex")}}">My Resources</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Resources</a></li>
+                    <li><a class="dropdown-item" href="{{route("resources.index")}}">Resources</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -24,7 +24,7 @@
                     Buildings
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">My Buidlings</a></li>
+                    <li><a class="dropdown-item" href="{{route("buildings.myindex")}}">My Buidlings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{{route("buildings.index")}}">Buldings</a></li>
                 </ul>

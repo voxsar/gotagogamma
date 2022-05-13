@@ -16,27 +16,10 @@ class ResourceController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreResourceRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreResourceRequest $request)
-    {
-        //
+        $data = array(
+            'resources' => Resource::all(),
+        );
+        return view("resources.index", $data);
     }
 
     /**
@@ -49,37 +32,27 @@ class ResourceController extends Controller
     {
         //
     }
-
     /**
-     * Show the form for editing the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  \App\Models\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resource $resource)
+    public function myindex()
     {
         //
+        $data = array(
+            'resources' => auth()->user()->resources,
+        );
+        return view("resources.index", $data);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateResourceRequest  $request
-     * @param  \App\Models\Resource  $resource
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateResourceRequest $request, Resource $resource)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
      *
      * @param  \App\Models\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resource $resource)
+    public function myshow(Resource $resource)
     {
         //
     }

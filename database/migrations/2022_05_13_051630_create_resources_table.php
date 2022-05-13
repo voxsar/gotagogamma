@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->integer("base");
-            $table->integer("multiplier");
+            $table->text("description");
             $table->timestamps();
         });
     }

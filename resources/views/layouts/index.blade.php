@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>{{ config('app.name', 'Laravel') }}</title>
     </head>
-    <body>
+    <body class="bg-dark text-white">
         <div class="container-fluid g-0">
             <div class="container">
                 <div class="row">

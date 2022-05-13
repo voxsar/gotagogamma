@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\ResourceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
-Route::get('buildings/{building}', [BuildingController::class, 'show'])->name("buildings.show");
+Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
+
+Route::get('resources', [ResourceController::class, 'index'])->name("resources.index");
+Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->name("resources.show");
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('buildings/my', [BuildingController::class, 'myindex'])->name("buildings.myindex");
+    Route::get('buildings/my/{building}', [BuildingController::class, 'myshow'])->name("buildings.myshow");
+
+    Route::get('resources/my', [ResourceController::class, 'myindex'])->name("resources.myindex");
+    Route::get('resources/my/{resource}', [ResourceController::class, 'myshow'])->name("resources.myshow");
+});
 
 require __DIR__.'/auth.php';

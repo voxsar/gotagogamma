@@ -27,7 +27,7 @@ class Building extends Model
         return $this->belongsToMany("App\Models\Building", "building_requirements", "cost_building_id", "building_id")->withPivot("level", "min");
     }
 
-    public function getDescriptionAttribute()
+    public function getADescriptionAttribute()
     {
         # code...
         $str = "The ".$this->name." building will cost you ";

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('building_users', function (Blueprint $table) {
             $table->foreignId("building_id")->on("buildings");
             $table->foreignId("user_id")->on("users");
+            $table->integer("level");
             $table->primary(['building_id', 'user_id']);
             $table->timestamps();
         });

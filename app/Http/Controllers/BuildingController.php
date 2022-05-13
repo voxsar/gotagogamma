@@ -38,4 +38,34 @@ class BuildingController extends Controller
         );
         return view("buildings.show", $data);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myindex()
+    {
+        //
+        $data = array(
+            'resources' => Resource::all(),
+            'buildings' => auth()->user()->buildings,
+        );
+        return view("buildings.index", $data);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myshow(Building $building)
+    {
+        //
+        $data = array(
+            'resources' => Resource::all(),
+            'buildings' => Building::all(),
+            'building' => $building,
+        );
+        return view("buildings.show", $data);
+    }
 }
