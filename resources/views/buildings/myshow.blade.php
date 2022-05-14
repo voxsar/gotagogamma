@@ -68,8 +68,8 @@
                             <tr>
                         @endif
                             <td scope="col">{{$c}}</td>
-                            @forelse ($building->costs as $cost)
-                                <td>{{(($cost->pivot->cost * $c) * $building->multiplier) / 100}}</td>
+                            @forelse ($building->productions as $cost)
+                                <td>{{(($cost->pivot->produce * $c) * $building->multiplier) / 100}}</td>
                             @empty
 
                             @endforelse

@@ -15,6 +15,12 @@ class Building extends Model
         return $this->belongsToMany("App\Models\Resource", "building_costs", "building_id", "resource_id")->withPivot("cost");
     }
 
+    public function productions()
+    {
+        # code...
+        return $this->belongsToMany("App\Models\Resource", "building_productions", "building_id", "resource_id")->withPivot("produce");
+    }
+
     public function requirements()
     {
         # code...

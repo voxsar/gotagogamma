@@ -21,10 +21,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'voxsar@gmail.com'
         ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call([
             BuildingSeeder::class,
         ]);
@@ -36,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ['id' => 4, 'name' => 'Negative Points', 'description' => 'Pro Government has more power to paint false narratives, but all false narratives are built around nugets of truth either misinterpreted or manupuliated, protestors must be smart not allow their actions to leave the door wide open for mis interpretations, but unfortunately every action is up for critisim, protestors must learn not allow themselves to be baited'],
             ['id' => 5, 'name' => 'Loyalty', 'description' => 'When the collective actually starts to serving their purpose, or taking a step in the right direction, it build loyalty by the protestors'],
         ]);
+
         for ($id=1; $id <= 10; $id++) {
             DB::table('building_costs')->insert([
                 ['building_id' => $id, 'resource_id' => 1, 'cost' => -320],
@@ -45,8 +42,16 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 20],
             ]);
 
+            DB::table('building_productions')->insert([
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => -30],
+                ['building_id' => $id, 'resource_id' => 2, 'produce' => 240],
+                ['building_id' => $id, 'resource_id' => 3, 'produce' => 2],
+                ['building_id' => $id, 'resource_id' => 4, 'produce' => 1],
+                ['building_id' => $id, 'resource_id' => 5, 'produce' => 1],
+            ]);
+
             DB::table('building_requirements')->insert([
-                ['building_id' => 11, 'cost_building_class' => 1, 'level' => 2],
+                ['building_id' => $id, 'cost_building_class' => 1, 'level' => 2],
             ]);
         }
 
@@ -58,6 +63,14 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 11, 'resource_id' => 5, 'cost' => 78],
         ]);
 
+        DB::table('building_productions')->insert([
+            ['building_id' => 11, 'resource_id' => 1, 'produce' => -10],
+            ['building_id' => 11, 'resource_id' => 2, 'produce' => 580],
+            ['building_id' => 11, 'resource_id' => 3, 'produce' => 10],
+            ['building_id' => 11, 'resource_id' => 4, 'produce' => 5],
+            ['building_id' => 11, 'resource_id' => 5, 'produce' => 10],
+        ]);
+
         for ($id=12; $id <= 13; $id++) {
             DB::table('building_costs')->insert([
                 ['building_id' => $id, 'resource_id' => 1, 'cost' => -780],
@@ -65,6 +78,14 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 3, 'cost' => 0],
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 30],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => -20],
+            ]);
+
+            DB::table('building_productions')->insert([
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => 360],
+                ['building_id' => $id, 'resource_id' => 2, 'produce' => 0],
+                ['building_id' => $id, 'resource_id' => 3, 'produce' => 0],
+                ['building_id' => $id, 'resource_id' => 4, 'produce' => 8],
+                ['building_id' => $id, 'resource_id' => 5, 'produce' => 0],
             ]);
         }
 
@@ -79,14 +100,23 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 14, 'resource_id' => 3, 'cost' => 70],
             ['building_id' => 14, 'resource_id' => 4, 'cost' => 0],
             ['building_id' => 14, 'resource_id' => 5, 'cost' => 40],
-        ]);
-
-        DB::table('building_costs')->insert([
             ['building_id' => 15, 'resource_id' => 1, 'cost' => -412],
             ['building_id' => 15, 'resource_id' => 2, 'cost' => -512],
             ['building_id' => 15, 'resource_id' => 3, 'cost' => 90],
             ['building_id' => 15, 'resource_id' => 4, 'cost' => 30],
             ['building_id' => 15, 'resource_id' => 5, 'cost' => 100],
+        ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 14, 'resource_id' => 1, 'produce' => 610],
+            ['building_id' => 14, 'resource_id' => 2, 'produce' => 50],
+            ['building_id' => 14, 'resource_id' => 3, 'produce' => 25],
+            ['building_id' => 14, 'resource_id' => 4, 'produce' => 5],
+            ['building_id' => 14, 'resource_id' => 5, 'produce' => 45],
+            ['building_id' => 15, 'resource_id' => 1, 'produce' => 610],
+            ['building_id' => 15, 'resource_id' => 2, 'produce' => 50],
+            ['building_id' => 15, 'resource_id' => 3, 'produce' => 25],
+            ['building_id' => 15, 'resource_id' => 4, 'produce' => 5],
+            ['building_id' => 15, 'resource_id' => 5, 'produce' => 45],
         ]);
 
         DB::table('building_requirements')->insert([
@@ -101,6 +131,13 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 16, 'resource_id' => 4, 'cost' => 90],
             ['building_id' => 16, 'resource_id' => 5, 'cost' => 100],
         ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 16, 'resource_id' => 1, 'produce' => 890],
+            ['building_id' => 16, 'resource_id' => 2, 'produce' => 180],
+            ['building_id' => 16, 'resource_id' => 3, 'produce' => 10],
+            ['building_id' => 16, 'resource_id' => 4, 'produce' => 5],
+            ['building_id' => 16, 'resource_id' => 5, 'produce' => 15],
+        ]);
 
         DB::table('building_requirements')->insert([
             ['building_id' => 16, 'cost_building_class' => 3, 'level' => 2],
@@ -113,14 +150,23 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 17, 'resource_id' => 3, 'cost' => 190],
             ['building_id' => 17, 'resource_id' => 4, 'cost' => 30],
             ['building_id' => 17, 'resource_id' => 5, 'cost' => 200],
-        ]);
-
-        DB::table('building_costs')->insert([
             ['building_id' => 18, 'resource_id' => 1, 'cost' => -654],
             ['building_id' => 18, 'resource_id' => 2, 'cost' => -1320],
             ['building_id' => 18, 'resource_id' => 3, 'cost' => 300],
             ['building_id' => 18, 'resource_id' => 4, 'cost' => 70],
             ['building_id' => 18, 'resource_id' => 5, 'cost' => 170],
+        ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 17, 'resource_id' => 1, 'produce' => -60],
+            ['building_id' => 17, 'resource_id' => 2, 'produce' => 0],
+            ['building_id' => 17, 'resource_id' => 3, 'produce' => 300],
+            ['building_id' => 17, 'resource_id' => 4, 'produce' => 50],
+            ['building_id' => 17, 'resource_id' => 5, 'produce' => 105],
+            ['building_id' => 18, 'resource_id' => 1, 'produce' => -60],
+            ['building_id' => 18, 'resource_id' => 2, 'produce' => 0],
+            ['building_id' => 18, 'resource_id' => 3, 'produce' => 300],
+            ['building_id' => 18, 'resource_id' => 4, 'produce' => 50],
+            ['building_id' => 18, 'resource_id' => 5, 'produce' => 105],
         ]);
 
         DB::table('building_requirements')->insert([
@@ -135,6 +181,13 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 19, 'resource_id' => 4, 'cost' => 60],
             ['building_id' => 19, 'resource_id' => 5, 'cost' => 150],
         ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 19, 'resource_id' => 1, 'produce' => 0],
+            ['building_id' => 19, 'resource_id' => 2, 'produce' => 70],
+            ['building_id' => 19, 'resource_id' => 3, 'produce' => 100],
+            ['building_id' => 19, 'resource_id' => 4, 'produce' => 50],
+            ['building_id' => 19, 'resource_id' => 5, 'produce' => 205],
+        ]);
 
         DB::table('building_costs')->insert([
             ['building_id' => 20, 'resource_id' => 1, 'cost' => -1790],
@@ -142,6 +195,13 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 20, 'resource_id' => 3, 'cost' => 430],
             ['building_id' => 20, 'resource_id' => 4, 'cost' => 20],
             ['building_id' => 20, 'resource_id' => 5, 'cost' => 250],
+        ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 20, 'resource_id' => 1, 'produce' => 0],
+            ['building_id' => 20, 'resource_id' => 2, 'produce' => 70],
+            ['building_id' => 20, 'resource_id' => 3, 'produce' => 100],
+            ['building_id' => 20, 'resource_id' => 4, 'produce' => 50],
+            ['building_id' => 20, 'resource_id' => 5, 'produce' => 205],
         ]);
 
         DB::table('building_requirements')->insert([
@@ -158,6 +218,13 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 0],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 270],
             ]);
+            DB::table('building_productions')->insert([
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => -10],
+                ['building_id' => $id, 'resource_id' => 2, 'produce' => -10],
+                ['building_id' => $id, 'resource_id' => 3, 'produce' => 150],
+                ['building_id' => $id, 'resource_id' => 4, 'produce' => 30],
+                ['building_id' => $id, 'resource_id' => 5, 'produce' => 600],
+            ]);
 
             DB::table('building_requirements')->insert([
                 ['building_id' => $id, 'cost_building_class' => 4, 'level' => 2],
@@ -173,6 +240,13 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 27, 'resource_id' => 4, 'cost' => 20],
             ['building_id' => 27, 'resource_id' => 5, 'cost' => 250],
         ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 27, 'resource_id' => 1, 'produce' => -10],
+            ['building_id' => 27, 'resource_id' => 2, 'produce' => 700],
+            ['building_id' => 27, 'resource_id' => 3, 'produce' => 700],
+            ['building_id' => 27, 'resource_id' => 4, 'produce' => 200],
+            ['building_id' => 27, 'resource_id' => 5, 'produce' => 380],
+        ]);
 
         DB::table('building_requirements')->insert([
             ['building_id' => 27, 'cost_building_class' => 8, 'level' => 2],
@@ -185,6 +259,13 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 28, 'resource_id' => 3, 'cost' => 430],
             ['building_id' => 28, 'resource_id' => 4, 'cost' => 20],
             ['building_id' => 28, 'resource_id' => 5, 'cost' => 250],
+        ]);
+        DB::table('building_productions')->insert([
+            ['building_id' => 28, 'resource_id' => 1, 'produce' => -10],
+            ['building_id' => 28, 'resource_id' => 2, 'produce' => 700],
+            ['building_id' => 28, 'resource_id' => 3, 'produce' => 500],
+            ['building_id' => 28, 'resource_id' => 4, 'produce' => 20],
+            ['building_id' => 28, 'resource_id' => 5, 'produce' => 480],
         ]);
 
         DB::table('building_requirements')->insert([
@@ -199,6 +280,13 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 50],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 270],
             ]);
+            DB::table('building_productions')->insert([
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => 600],
+                ['building_id' => $id, 'resource_id' => 2, 'produce' => 200],
+                ['building_id' => $id, 'resource_id' => 3, 'produce' => 25],
+                ['building_id' => $id, 'resource_id' => 4, 'produce' => 10],
+                ['building_id' => $id, 'resource_id' => 5, 'produce' => 190],
+            ]);
 
             DB::table('building_requirements')->insert([
                 ['building_id' => $id, 'cost_building_class' => 1, 'level' => 2],
@@ -212,6 +300,13 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 3, 'cost' => 790],
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 200],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 320],
+            ]);
+            DB::table('building_productions')->insert([
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => 1000],
+                ['building_id' => $id, 'resource_id' => 2, 'produce' => 500],
+                ['building_id' => $id, 'resource_id' => 3, 'produce' => 50],
+                ['building_id' => $id, 'resource_id' => 4, 'produce' => 20],
+                ['building_id' => $id, 'resource_id' => 5, 'produce' => 390],
             ]);
 
             DB::table('building_requirements')->insert([
