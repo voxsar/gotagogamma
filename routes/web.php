@@ -14,13 +14,8 @@ use App\Http\Controllers\ResourceController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::redirect('/', 'dashboard');
+Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
 
 Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
 Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");

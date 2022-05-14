@@ -1,11 +1,12 @@
 @extends("layouts.index")
 @section("page")
+<div class="container">
     <div class="row">
         <div class="col-md-8">
             <div class="mt-5"></div>
             <p contenteditable="">{!!$building->description!!}</p>
             <div class="mt-5"></div>
-            <table class="table table-hover table-bordered text-white">
+            <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -36,7 +37,7 @@
                 </tbody>
             </table>
             <div class="mt-5"></div>
-            <table class="table table-hover table-bordered text-white">
+            <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -66,4 +67,5 @@
             <img class="img-fluid" src="{{asset('images/buildings/1.jpg')}}">
         </div>
     </div>
+</div>
 @endsection()

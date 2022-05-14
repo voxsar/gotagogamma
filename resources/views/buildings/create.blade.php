@@ -1,6 +1,6 @@
 @extends("layouts.index")
 @section("page")
-<table class="table table-hover table-bordered text-white">
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th scope="col">#</th>
