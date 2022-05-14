@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("building_id")->nullable()->on("buildings");
             $table->foreignId("user_id")->on("users");
-            $table->integer("level");
+            $table->integer("level")->default(1);
             $table->string("lat");
             $table->string("lng");
             $table->integer("is_building")->default(0);

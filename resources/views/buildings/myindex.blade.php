@@ -83,17 +83,17 @@
 @push("scripts")
     <script >
         $(document).ready(function(){
-            setTimeout(countdownloop, 1100);
+            setTimeout(countdownloop2, 1100);
         })
 
-        function countdownloop() {
+        function countdownloop2() {
             $(".countdown").each(function (ele) {
                 var count = $(this).data("count")
                 var now = Date.now()
                 var diff = count - now
                 if(diff >= 0){
                     var sec = new Date(diff)
-                    $(this).html("Building in progress "+sec.getSeconds()+" remaining")
+                    $(this).html("Building in progress "+sec.getUTCHours()+":"+sec.getUTCMinutes()+":"+sec.getUTCSeconds()+" remaining")
                 }else{
                     $(this).html("Build Completed")
                     $(".btn-upgrade").removeClass("disabled")
@@ -101,7 +101,7 @@
                     window.location.reload()
                 }
             })
-            setTimeout(countdownloop, 1100);
+            setTimeout(countdownloop2, 1100);
         }
     </script>
 @endpush

@@ -34,6 +34,14 @@
         </div>
         <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @if(auth()->user()->upgrade_completetime != null)
+                    <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm">
+                        <span class="counter"></span>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            Building
+                        </span>
+                    </a>
+                @endif
                 @forelse (auth()->user()->resources as $resource)
                     <a href="{{route("resources.myindex")}}" class="btn btn-primary position-relative ms-4 ps-2 btn-sm">
                         {{$resource->name}}
@@ -49,7 +57,27 @@
     </div>
 </nav>
 @push("scripts")
-  <script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(countdownloop, 1100);
+        })
 
-  </script>
+        function countdownloop() {
+            @if(auth()->user()->upgrade_completetime != null)
+                $(".headcount").each(function (ele) {
+                    var count = {{auth()->user()->upgrade_completetime->valueOf()}}
+                    var now = Date.now()
+                    var diff = count - now
+                    if(diff >= 0){
+                        var sec = new Date(diff)
+                        console.log(sec)
+                        $(this).find("span.counter").html(sec.getUTCHours()+":"+sec.getUTCMinutes()+":"+sec.getUTCSeconds()+" remaining")
+                    }else{
+                        $(this).remove()
+                    }
+                })
+            @endif
+            setTimeout(countdownloop, 1100);
+        }
+    </script>
 @endpush

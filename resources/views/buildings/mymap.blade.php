@@ -1,7 +1,7 @@
 @extends("layouts.index")
 @section("page")
 <div class="container-fluid g-0">
-    <div class="row flex-fill d-flex justify-content-start">
+    <div class="row g-0 flex-fill d-flex justify-content-start">
         <div class="col vh-100 p-0 m-0">
             <div id="map"></div>
         </div>
@@ -65,23 +65,23 @@
                 });
 
                 marker{{$slot->id}}.addListener("click", () => {
-                    console.log("d")
                     @if($slot->building != null)
                         @if($slot->is_building == 0)
                             @if(auth()->user()->is_upgrading == 1)
-
+                                toastr["error"]('Cannot build while another build is ongoing')
                             @else
-                                window.location.href = '{{route("buildings.show", $slot->building)}}';
+                                window.location.href = '{{route("buildings.myshow", ["buildinguser" => $slot, "building" => $slot->building])}}';
                             @endif
                         @else
                             @if(auth()->user()->is_upgrading == 1)
-
+                                toastr["error"]('Cannot build while another build is ongoing')
                             @else
-                                window.location.href = '{{route("buildings.show", $slot->building)}}';
+                                window.location.href = '{{route("buildings.myshow", ["buildinguser" => $slot, "building" => $slot->building])}}';
                             @endif
                         @endif
                     @else
                         @if(auth()->user()->is_upgrading == 1)
+                            toastr["error"]('Cannot build while another build is ongoing')
                         @else
                             window.location.href = '{{route("buildings.create", $slot->id)}}';
                         @endif

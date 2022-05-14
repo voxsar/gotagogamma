@@ -14,13 +14,30 @@ use App\Models\BuildingUser;
 use App\Models\Building;
 use App\Models\User;
 
-class UpgradeBuilding implements ShouldQueue
+class UpgradeBuilding implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $buildinguser;
     private $building;
     private $level;
+
+    /**
+     * The number of seconds after which the job's unique lock will be released.
+     *
+     * @var int
+     */
+    public $uniqueFor = 3600;
+
+    /**
+     * The unique ID of the job.
+     *
+     * @return string
+     */
+    public function uniqueId()
+    {
+        return $this->buildinguser->id;
+    }
 
     /**
      * Create a new job instance.
@@ -43,11 +60,14 @@ class UpgradeBuilding implements ShouldQueue
     public function handle()
     {
         //
+        $alreadyExists = BuildingUser::where('user_id', $this->buildinguser->user_id)->where('building_id', $this->building->id)->count();
         $user = User::find($this->buildinguser->user_id);
-        $this->buildinguser->building_id = $this->building->id;
-        $this->buildinguser->level = $this->level;
-        $this->buildinguser->is_building = 0;
-        $this->buildinguser->save();
+        if($alreadyExists == 0){
+            $this->buildinguser->building_id = $this->building->id;
+            $this->buildinguser->level = $this->level;
+            $this->buildinguser->is_building = 0;
+            $this->buildinguser->save();
+        }
 
         $user->is_upgrading = 0;
         $user->upgrade_completetime = null;

@@ -78,15 +78,16 @@ class BuildingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function myshow(Building $building)
+    public function myshow(BuildingUser $buildinguser, Building $building)
     {
         //
         $data = array(
             'resources' => Resource::all(),
             'buildings' => Building::all(),
             'building' => $building,
+            'buildinguser' => $buildinguser
         );
-        return view("buildings.show", $data);
+        return view("buildings.myshow", $data);
     }
 
     /**
@@ -159,7 +160,7 @@ class BuildingController extends Controller
         $requirements = $building->requirements;
 
         if($user->is_upgrading == 1){
-            return back()->with([
+            return redirect()->route("buildings.mymap")->with([
                 "message" => "Currently upgrading, try again in ".$user->upgrade_completetime->diffForHumans(),
                 "type" => "warning"
             ]);
@@ -209,9 +210,9 @@ class BuildingController extends Controller
                     }
                 }
             }
-            return back()->with("message", "Upgrade will complete ".$user->upgrade_completetime->diffForHumans());
+            return redirect()->route("buildings.mymap")->with("message", "Upgrade will complete ".$user->upgrade_completetime->diffForHumans());
         }else{
-            return back()->with([
+            return redirect()->route("buildings.mymap")->with([
                 "message" => "Not able to upgrade",
                 "type" => "danger",
             ]);
@@ -227,7 +228,7 @@ class BuildingController extends Controller
         $existingBuilding = $buildinguser;
         $level = 1;
         if($existingBuilding != null){
-            $level = $existingBuilding->level + 1;
+            $level = $existingBuilding->level;
         }
         $cleared_upgrade = false;
         $cleared_cost = true;
