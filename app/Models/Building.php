@@ -18,13 +18,13 @@ class Building extends Model
     public function requirements()
     {
         # code...
-        return $this->belongsToMany("App\Models\Building", "building_requirements", "building_id", "cost_building_id")->withPivot("level");
+        return $this->belongsToMany("App\Models\Building", "building_requirements", "building_id", "cost_building_class")->withPivot("level");
     }
 
     public function provision()
     {
         # code...
-        return $this->belongsToMany("App\Models\Building", "building_requirements", "cost_building_id", "building_id")->withPivot("level");
+        return $this->belongsToMany("App\Models\Building", "building_requirements", "cost_building_class", "building_id")->withPivot("level");
     }
 
     public function getADescriptionAttribute()

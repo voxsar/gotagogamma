@@ -35,24 +35,6 @@ class DatabaseSeeder extends Seeder
             ['id' => 4, 'name' => 'Negative Points', 'description' => 'Pro Government has more power to paint false narratives, but all false narratives are built around nugets of truth either misinterpreted or manupuliated, protestors must be smart not allow their actions to leave the door wide open for mis interpretations, but unfortunately every action is up for critisim, protestors must learn not allow themselves to be baited'],
             ['id' => 5, 'name' => 'Loyalty', 'description' => 'When the collective actually starts to serving their purpose, or taking a step in the right direction, it build loyalty by the protestors'],
         ]);
-
-        DB::table('building_requirements')->insert([
-            ['building_id' => 2, 'cost_building_id' => 1, 'level' => 2],
-            ['building_id' => 3, 'cost_building_id' => 2, 'level' => 4],
-            ['building_id' => 4, 'cost_building_id' => 2, 'level' => 2],
-            ['building_id' => 5, 'cost_building_id' => 3, 'level' => 1],
-            ['building_id' => 5, 'cost_building_id' => 4, 'level' => 2],
-            ['building_id' => 6, 'cost_building_id' => 1, 'level' => 4],
-            ['building_id' => 7, 'cost_building_id' => 6, 'level' => 2],
-            ['building_id' => 8, 'cost_building_id' => 6, 'level' => 2],
-            ['building_id' => 9, 'cost_building_id' => 7, 'level' => 4],
-            ['building_id' => 9, 'cost_building_id' => 8, 'level' => 3],
-            ['building_id' => 10, 'cost_building_id' => 8, 'level' => 3],
-            ['building_id' => 11, 'cost_building_id' => 9, 'level' => 4],
-            ['building_id' => 12, 'cost_building_id' => 1, 'level' => 6],
-            ['building_id' => 13, 'cost_building_id' => 12, 'level' => 2],
-        ]);
-
         for ($id=1; $id <= 10; $id++) {
             DB::table('building_costs')->insert([
                 ['building_id' => $id, 'resource_id' => 1, 'cost' => -320],
@@ -60,6 +42,10 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 3, 'cost' => 4],
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 2],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 20],
+            ]);
+
+            DB::table('building_requirements')->insert([
+                ['building_id' => 11, 'cost_building_class' => 1, 'level' => 2],
             ]);
         }
 
@@ -81,6 +67,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        DB::table('building_requirements')->insert([
+            ['building_id' => 12, 'cost_building_class' => 2, 'level' => 2],
+            ['building_id' => 13, 'cost_building_class' => 2, 'level' => 2],
+        ]);
+
         DB::table('building_costs')->insert([
             ['building_id' => 14, 'resource_id' => 1, 'cost' => -380],
             ['building_id' => 14, 'resource_id' => 2, 'cost' => -260],
@@ -97,12 +88,22 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 15, 'resource_id' => 5, 'cost' => 100],
         ]);
 
+        DB::table('building_requirements')->insert([
+            ['building_id' => 14, 'cost_building_class' => 2, 'level' => 2],
+            ['building_id' => 15, 'cost_building_class' => 2, 'level' => 2],
+        ]);
+
         DB::table('building_costs')->insert([
             ['building_id' => 16, 'resource_id' => 1, 'cost' => -352],
             ['building_id' => 16, 'resource_id' => 2, 'cost' => -262],
             ['building_id' => 16, 'resource_id' => 3, 'cost' => 90],
             ['building_id' => 16, 'resource_id' => 4, 'cost' => 90],
             ['building_id' => 16, 'resource_id' => 5, 'cost' => 100],
+        ]);
+
+        DB::table('building_requirements')->insert([
+            ['building_id' => 16, 'cost_building_class' => 3, 'level' => 2],
+            ['building_id' => 16, 'cost_building_class' => 4, 'level' => 2],
         ]);
 
         DB::table('building_costs')->insert([
@@ -121,6 +122,11 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 18, 'resource_id' => 5, 'cost' => 170],
         ]);
 
+        DB::table('building_requirements')->insert([
+            ['building_id' => 17, 'cost_building_class' => 1, 'level' => 2],
+            ['building_id' => 18, 'cost_building_class' => 1, 'level' => 2],
+        ]);
+
         DB::table('building_costs')->insert([
             ['building_id' => 19, 'resource_id' => 1, 'cost' => -650],
             ['building_id' => 19, 'resource_id' => 2, 'cost' => -380],
@@ -137,6 +143,12 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 20, 'resource_id' => 5, 'cost' => 250],
         ]);
 
+        DB::table('building_requirements')->insert([
+            ['building_id' => 19, 'cost_building_class' => 2, 'level' => 2],
+            ['building_id' => 19, 'cost_building_class' => 6, 'level' => 2],
+            ['building_id' => 20, 'cost_building_class' => 6, 'level' => 2],
+        ]);
+
         for ($id=21; $id <= 26; $id++) {
             DB::table('building_costs')->insert([
                 ['building_id' => $id, 'resource_id' => 1, 'cost' => -1280],
@@ -144,6 +156,12 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 3, 'cost' => 250],
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 0],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 270],
+            ]);
+
+            DB::table('building_requirements')->insert([
+                ['building_id' => $id, 'cost_building_class' => 4, 'level' => 2],
+                ['building_id' => $id, 'cost_building_class' => 7, 'level' => 2],
+                ['building_id' => $id, 'cost_building_class' => 8, 'level' => 2],
             ]);
         }
 
@@ -155,12 +173,21 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 27, 'resource_id' => 5, 'cost' => 250],
         ]);
 
+        DB::table('building_requirements')->insert([
+            ['building_id' => 27, 'cost_building_class' => 8, 'level' => 2],
+            ['building_id' => 27, 'cost_building_class' => 12, 'level' => 2],
+        ]);
+
         DB::table('building_costs')->insert([
             ['building_id' => 28, 'resource_id' => 1, 'cost' => -1790],
             ['building_id' => 28, 'resource_id' => 2, 'cost' => -3650],
             ['building_id' => 28, 'resource_id' => 3, 'cost' => 430],
             ['building_id' => 28, 'resource_id' => 4, 'cost' => 20],
             ['building_id' => 28, 'resource_id' => 5, 'cost' => 250],
+        ]);
+
+        DB::table('building_requirements')->insert([
+            ['building_id' => 28, 'cost_building_class' => 9, 'level' => 2],
         ]);
 
         for ($id=29; $id <= 35; $id++) {
@@ -170,6 +197,10 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 3, 'cost' => 390],
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 50],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 270],
+            ]);
+
+            DB::table('building_requirements')->insert([
+                ['building_id' => $id, 'cost_building_class' => 1, 'level' => 2],
             ]);
         }
 
@@ -181,6 +212,10 @@ class DatabaseSeeder extends Seeder
                 ['building_id' => $id, 'resource_id' => 4, 'cost' => 200],
                 ['building_id' => $id, 'resource_id' => 5, 'cost' => 320],
             ]);
+
+            DB::table('building_requirements')->insert([
+                ['building_id' => $id, 'cost_building_class' => 13, 'level' => 2],
+            ]);
         }
 
         DB::table('resource_users')->insert([
@@ -190,5 +225,11 @@ class DatabaseSeeder extends Seeder
             ['user_id' => 1, 'resource_id' => 4, 'amount' => 1],
             ['user_id' => 1, 'resource_id' => 5, 'amount' => 1],
         ]);
+
+        for ($id=1; $id <= 40; $id++) {
+            DB::table('building_users')->insert([
+                ['user_id' => 1, 'level' => 0],
+            ]);
+        }
     }
 }

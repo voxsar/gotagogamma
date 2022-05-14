@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('building_requirements', function (Blueprint $table) {
             $table->id();
             $table->foreignId("building_id");
-            $table->foreignId("cost_building_id")->on("buildings");
+            $table->unsignedBigInteger("cost_building_class")->index();
+            $table->foreign("cost_building_class")->references('cost_building_class')->on("buildings");
             $table->integer("level");
             $table->timestamps();
         });

@@ -42,6 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ["upgrade_completetime"];
+
     public function resources()
     {
         # code...
@@ -52,5 +54,11 @@ class User extends Authenticatable
     {
         # code...
         return $this->belongsToMany("App\Models\Building", "building_users", "user_id", "building_id")->withPivot("level");
+    }
+
+    public function slots()
+    {
+        # code...
+        return $this->hasMany("App\Models\BuildingUser");
     }
 }

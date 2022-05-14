@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('building_users', function (Blueprint $table) {
-            $table->foreignId("building_id")->on("buildings");
+            $table->id();
+            $table->foreignId("building_id")->nullable()->on("buildings");
             $table->foreignId("user_id")->on("users");
             $table->integer("level");
-            $table->primary(['building_id', 'user_id']);
+            $table->integer("is_building")->default(0);
+            $table->unique(['building_id', 'user_id'])->nullable();
             $table->timestamps();
         });
     }

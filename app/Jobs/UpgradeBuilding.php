@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 use DB;
+use App\Models\BuildingUser;
 use App\Models\Building;
 use App\Models\User;
 
@@ -17,8 +18,8 @@ class UpgradeBuilding implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $buildinguser;
     private $building;
-    private $user;
     private $level;
 
     /**
@@ -26,11 +27,11 @@ class UpgradeBuilding implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Building $building, User $user, $level)
+    public function __construct(BuildingUser $buildinguser, Building $building, $level)
     {
         //
+        $this->buildinguser = $buildinguser;
         $this->building = $building;
-        $this->user = $user;
         $this->level = $level;
     }
 
@@ -42,20 +43,14 @@ class UpgradeBuilding implements ShouldQueue
     public function handle()
     {
         //
-        DB::table('building_users')->updateOrInsert(
-            [
-                'building_id' => $this->building->id,
-                'user_id' => $this->user->id,
-            ],
-            [
-                'building_id' => $this->building->id,
-                'user_id' => $this->user->id,
-                'level' => $this->level,
-            ]
-        );
+        $user = User::find($this->buildinguser->user_id);
+        $this->buildinguser->building_id = $this->building->id;
+        $this->buildinguser->level = $this->level;
+        $this->buildinguser->is_building = 0;
+        $this->buildinguser->save();
 
-        $this->user->is_upgrading = 0;
-        $this->user->upgrade_completetime = null;
-        $this->user->save();
+        $user->is_upgrading = 0;
+        $user->upgrade_completetime = null;
+        $user->save();
     }
 }
