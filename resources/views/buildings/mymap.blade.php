@@ -69,17 +69,15 @@
                     @if($slot->building != null)
                         @if($slot->is_building == 0)
                             @if(auth()->user()->is_upgrading == 1)
-                                //window.location.url = "{{route("buildings.upgrade", ["buildinguser" => $slot, "building" => $slot->building])}}";
-                                marker{{$slot->id}}.setAnimation(google.maps.Animation.BOUNCE);
+
                             @else
-                                window.location.href = '{{route("buildings.upgrade", ["buildinguser" => $slot, "building" => $slot->building])}}';
+                                window.location.href = '{{route("buildings.show", $slot->building)}}';
                             @endif
                         @else
                             @if(auth()->user()->is_upgrading == 1)
-                                //window.location.url = "{{route("buildings.upgrade", ["buildinguser" => $slot, "building" => $slot->building])}}";
-                                marker{{$slot->id}}.setAnimation(google.maps.Animation.BOUNCE);
+
                             @else
-                                window.location.href = '{{route("buildings.upgrade", ["buildinguser" => $slot, "building" => $slot->building])}}';
+                                window.location.href = '{{route("buildings.show", $slot->building)}}';
                             @endif
                         @endif
                     @else
