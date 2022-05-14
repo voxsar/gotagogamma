@@ -10,7 +10,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <title>{{ config('app.name', 'Laravel') }}</title>
+        @stack("css")
     </head>
     <body class="bg-dark text-white">
         <div class="container-fluid g-0">
@@ -69,6 +71,17 @@
                 })
             @endif
         </script>
+        <!--
+        The `defer` attribute causes the callback to execute after the full HTML
+        document has been parsed. For non-blocking uses, avoiding race conditions,
+        and consistent behavior across browsers, consider loading using Promises
+        with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+        -->
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApEch4OET6BpxySS7L4j93P7LkMfH2du8&callback=initMap&v=weekly"
+        defer
+    ></script>
+
         @stack("scripts")
     </body>
 </html>
