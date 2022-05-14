@@ -42,7 +42,6 @@
                         <th scope="col">#</th>
                         <th scope="col">Requirements</th>
                         <th scope="col">Level</th>
-                        <th scope="col">Minimum Buildings</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +50,6 @@
                             <td scope="col">{{$loop->iteration}}</td>
                             <td>{{$requirement->name}}</td>
                             <td>{{$requirement->pivot->level}}</td>
-                            <td>{{$requirement->pivot->min}}</td>
                         </tr>
                     @empty
                         <tr>

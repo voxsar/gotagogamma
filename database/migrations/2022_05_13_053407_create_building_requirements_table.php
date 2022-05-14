@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId("building_id");
             $table->foreignId("cost_building_id")->on("buildings");
             $table->integer("level");
-            $table->integer("min");
             $table->timestamps();
         });
     }

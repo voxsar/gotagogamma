@@ -19,17 +19,19 @@ class UpgradeBuilding implements ShouldQueue
 
     private $building;
     private $user;
+    private $level;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Building $building, User $user)
+    public function __construct(Building $building, User $user, $level)
     {
         //
         $this->building = $building;
         $this->user = $user;
+        $this->level = $level;
     }
 
     /**
@@ -40,13 +42,17 @@ class UpgradeBuilding implements ShouldQueue
     public function handle()
     {
         //
-        DB::table('building_users')->insert([
+        DB::table('building_users')->updateOrInsert(
             [
                 'building_id' => $this->building->id,
                 'user_id' => $this->user->id,
-                'level' => 1,
+            ],
+            [
+                'building_id' => $this->building->id,
+                'user_id' => $this->user->id,
+                'level' => $this->level,
             ]
-        ]);
+        );
 
         $this->user->is_upgrading = 0;
         $this->user->upgrade_completetime = null;

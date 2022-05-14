@@ -18,13 +18,13 @@ class Building extends Model
     public function requirements()
     {
         # code...
-        return $this->belongsToMany("App\Models\Building", "building_requirements", "building_id", "cost_building_id")->withPivot("level", "min");
+        return $this->belongsToMany("App\Models\Building", "building_requirements", "building_id", "cost_building_id")->withPivot("level");
     }
 
     public function provision()
     {
         # code...
-        return $this->belongsToMany("App\Models\Building", "building_requirements", "cost_building_id", "building_id")->withPivot("level", "min");
+        return $this->belongsToMany("App\Models\Building", "building_requirements", "cost_building_id", "building_id")->withPivot("level");
     }
 
     public function getADescriptionAttribute()
@@ -38,7 +38,7 @@ class Building extends Model
         $str .= " and you need to have the follow requirements";
         foreach ($this->requirements as $key => $requirement) {
             # code...
-            $str .= " a minimum of ". $requirement->pivot->min ." ".$requirement->name." at level ". $requirement->pivot->level . ", ";
+            $str .= " a minimum of ".$requirement->name." at level ". $requirement->pivot->level . ", ";
         }
         $str .= " once you get this building you can get";
         foreach ($this->provision as $key => $provisio) {
