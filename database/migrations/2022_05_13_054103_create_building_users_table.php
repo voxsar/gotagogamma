@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId("building_id")->nullable()->on("buildings");
             $table->foreignId("user_id")->on("users");
             $table->integer("level");
+            $table->string("lat");
+            $table->string("lng");
             $table->integer("is_building")->default(0);
             $table->unique(['building_id', 'user_id'])->nullable();
             $table->timestamps();

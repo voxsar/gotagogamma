@@ -40,6 +40,23 @@ class BuildingController extends Controller
         );
         return view("buildings.show", $data);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mymap()
+    {
+        //
+        $data = array(
+            'resources' => Resource::all(),
+            'buildings' => auth()->user()->buildings,
+            'slots' => auth()->user()->slots
+        );
+        return view("buildings.mymap", $data);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -24,6 +24,7 @@
                     Buildings
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{route("buildings.mymap")}}">Map</a></li>
                     <li><a class="dropdown-item" href="{{route("buildings.myindex")}}">My Buidlings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{{route("buildings.index")}}">Buldings</a></li>

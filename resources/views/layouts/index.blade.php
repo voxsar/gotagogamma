@@ -14,22 +14,16 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         @stack("css")
     </head>
-    <body class="bg-dark text-white">
-        <div class="container-fluid g-0">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
+    <body >
+        <div class="container-fluid g-0 navbar-light bg-light">
+            <div class="container g-0 navbar-light bg-light">
+                <div class="row navbar-light bg-light">
+                    <div class="col navbar-light bg-light">
                         @include("layouts.header")
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        @yield("page")
-                    </div>
-                </div>
-            </div>
+            @yield("page")
         </div>
         <!-- Optional JavaScript; choose one of the two! -->
 
@@ -71,16 +65,6 @@
                 })
             @endif
         </script>
-        <!--
-        The `defer` attribute causes the callback to execute after the full HTML
-        document has been parsed. For non-blocking uses, avoiding race conditions,
-        and consistent behavior across browsers, consider loading using Promises
-        with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-        -->
-        <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApEch4OET6BpxySS7L4j93P7LkMfH2du8&callback=initMap&v=weekly"
-        defer
-    ></script>
 
         @stack("scripts")
     </body>

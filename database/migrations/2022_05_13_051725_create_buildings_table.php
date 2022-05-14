@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string("name");
             $table->integer("base");
             $table->integer("multiplier");
+            $table->string("lat");
+            $table->string("lng");
+            $table->string("image_url");
             $table->unsignedBigInteger("cost_building_class")->index();
             $table->text("description");
             $table->timestamps();

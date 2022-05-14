@@ -47,4 +47,10 @@ class Building extends Model
         }
         return $str;
     }
+
+    public function getImageAttribute()
+    {
+        # code...
+        return asset($this->image_url);
+    }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use DB;
+use App\Models\Building;
 
 class DatabaseSeeder extends Seeder
 {
@@ -226,9 +227,11 @@ class DatabaseSeeder extends Seeder
             ['user_id' => 1, 'resource_id' => 5, 'amount' => 1],
         ]);
 
-        for ($id=1; $id <= 40; $id++) {
+        $buildings = Building::all();
+        foreach ($buildings as $building) {
+            # code...
             DB::table('building_users')->insert([
-                ['user_id' => 1, 'level' => 0],
+                ['user_id' => 1, 'level' => 0, "lat" => $building->lat, "lng" => $building->lng],
             ]);
         }
     }
