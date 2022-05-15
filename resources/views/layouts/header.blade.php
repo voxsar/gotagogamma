@@ -83,6 +83,9 @@
                         $(this).find("span.counter").html(sec.getUTCHours()+":"+sec.getUTCMinutes()+":"+sec.getUTCSeconds()+" remaining")
                     }else{
                         $(this).remove()
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1500);
                     }
                 })
             @endif
