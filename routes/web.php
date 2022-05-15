@@ -15,17 +15,18 @@ use App\Http\Controllers\ResourceController;
 */
 
 Route::redirect('/', 'dashboard');
-Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
-
-Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
-Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
-
-Route::get('resources', [ResourceController::class, 'index'])->name("resources.index");
-Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->name("resources.show");
 
 Route::get('katana', [BuildingController::class, 'katana'])->name("katana");
 
 Route::middleware(['auth'])->group(function () {
+    Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
+
+    Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
+    Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
+
+    Route::get('resources', [ResourceController::class, 'index'])->name("resources.index");
+    Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->name("resources.show");
+
     Route::get('buildings/mymap', [BuildingController::class, 'mymap'])->name("buildings.mymap");
     Route::get('buildings/my', [BuildingController::class, 'myindex'])->name("buildings.myindex");
     Route::get('buildings/my/{buildinguser}/{building}', [BuildingController::class, 'myshow'])->name("buildings.myshow");

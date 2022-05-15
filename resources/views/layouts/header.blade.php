@@ -52,6 +52,14 @@
                 @empty
 
                 @endforelse
+                <a href="{{route("logout")}}" class="btn btn-primary position-relative ms-4 ps-2 btn-sm">
+                    Logout
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        @auth
+                            {{auth()->user()->name}}
+                        @endauth
+                    </span>
+                </a>
             </ul>
         </div>
     </div>
