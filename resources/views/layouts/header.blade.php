@@ -42,7 +42,7 @@
                     @if(auth()->user()->upgrade_completetime != null)
                         <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm px-5">
                             <span class="counter"></span>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                                 Building
                             </span>
                         </a>
