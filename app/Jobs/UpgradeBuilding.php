@@ -62,12 +62,12 @@ class UpgradeBuilding implements ShouldQueue, ShouldBeUnique
         //
         $alreadyExists = BuildingUser::where('user_id', $this->buildinguser->user_id)->where('building_id', $this->building->id)->count();
         $user = User::find($this->buildinguser->user_id);
-        if($alreadyExists == 0){
+        //if($alreadyExists == 0){
             $this->buildinguser->building_id = $this->building->id;
             $this->buildinguser->level = $this->level;
             $this->buildinguser->is_building = 0;
             $this->buildinguser->save();
-        }
+        //}
 
         $user->is_upgrading = 0;
         $user->upgrade_completetime = null;

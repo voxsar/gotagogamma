@@ -43,15 +43,11 @@ class DatabaseSeeder extends Seeder
             ]);
 
             DB::table('building_productions')->insert([
-                ['building_id' => $id, 'resource_id' => 1, 'produce' => -30],
+                ['building_id' => $id, 'resource_id' => 1, 'produce' => 0],
                 ['building_id' => $id, 'resource_id' => 2, 'produce' => 240],
                 ['building_id' => $id, 'resource_id' => 3, 'produce' => 2],
                 ['building_id' => $id, 'resource_id' => 4, 'produce' => 1],
                 ['building_id' => $id, 'resource_id' => 5, 'produce' => 1],
-            ]);
-
-            DB::table('building_requirements')->insert([
-                ['building_id' => $id, 'cost_building_class' => 1, 'level' => 2],
             ]);
         }
 
@@ -69,6 +65,10 @@ class DatabaseSeeder extends Seeder
             ['building_id' => 11, 'resource_id' => 3, 'produce' => 10],
             ['building_id' => 11, 'resource_id' => 4, 'produce' => 5],
             ['building_id' => 11, 'resource_id' => 5, 'produce' => 10],
+        ]);
+
+        DB::table('building_requirements')->insert([
+            ['building_id' => 11, 'cost_building_class' => 1, 'level' => 2],
         ]);
 
         for ($id=12; $id <= 13; $id++) {

@@ -7,7 +7,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Building Name</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Name</th>
                         @forelse ($resources as $resource)
                             <th scope="col">{{$resource->name}}</th>
                         @empty
@@ -21,6 +22,7 @@
                     @forelse ($buildings as $building)
                         <tr>
                             <td scope="col">{{$building->id}}</td>
+                            <td scope="col" class="text-center"><img width="20px" src="{{asset($building->image_url)}}"></td>
                             <td scope="col"><a href="{{route("buildings.show", $building)}}">{{$building->name}}</a></td>
                             @forelse ($building->costs as $cost)
                                 <td>{{(($cost->pivot->cost * 2) * $building->multiplier) / 100}}</td>

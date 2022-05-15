@@ -9,6 +9,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Resource Name</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,6 +18,8 @@
                             <td>{{$loop->iteration}}</td>
                             <td scope="col">{{$resource->name}}</td>
                             <td scope="col">{{$resource->pivot->amount}}</td>
+                            <td scope="col">{{round($resource->pivot->amount + ((($resource->pivot->amount / 60) / 60 / 60) * now('UTC')->format('s')))}}</td>
+                            <td scope="col">{{round($resource->pivot->amount + ((($resource->pivot->amount / 60) / 60) * 59))}}</td>
                         </tr>
                     @empty
 

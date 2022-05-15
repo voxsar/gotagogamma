@@ -6,6 +6,7 @@ use App\Jobs\UpgradeBuilding;
 use App\Models\BuildingUser;
 use App\Models\Building;
 use App\Models\Resource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -99,7 +100,11 @@ class BuildingController extends Controller
     {
         //
         $buildings = auth()->user()->buildings;
-        $allbuildings = Building::all();
+        $excepts = [];
+        foreach ($buildings as $b) {
+            $excepts[] = $b->pivot->building_id;
+        }
+        $allbuildings = Building::all()->except($excepts);
         $eligiblebulldings = collect();
         foreach ($allbuildings as $allbuilding) {
             # code...
@@ -124,13 +129,13 @@ class BuildingController extends Controller
             }
         }
         $avialablebulldings = collect();
-        foreach ($eligiblebulldings as $allbuilding) {
-            if($allbuilding->requirements->count() == 0){
-                $avialablebulldings->push($allbuilding);
+        foreach ($eligiblebulldings as $eligiblebullding) {
+            if($eligiblebullding->requirements->count() == 0){
+                $avialablebulldings->push($eligiblebullding);
             }else{
                 foreach ($buildings as $building) {
-                    if($allbuilding->id != $building->id){
-                        $avialablebulldings->push($allbuilding);
+                    if($eligiblebullding->id != $building->id){
+                        $avialablebulldings->push($eligiblebullding);
                     }
                 }
             }
@@ -138,9 +143,8 @@ class BuildingController extends Controller
         $data = array(
             'resources' => Resource::all(),
             'slot' => $buildinguser->id,
-            'buildings' => $avialablebulldings,
+            'buildings' => $eligiblebulldings,
         );
-        //return $data;
         return view("buildings.create", $data);
     }
 
@@ -166,13 +170,15 @@ class BuildingController extends Controller
             ]);
         }
 
+        BuildingUser::where('user_id', auth()->user()->id)->update(['is_building' => 0]);
+
         if($building->requirements->count() == 0){
             $cleared_upgrade = true;
         }else{
             foreach ($requirements as $key => $requirement) {
                 foreach ($buildings as $key => $mybuilding) {
                     # code...
-                    if($mybuilding->id == $requirement->id && $requirement->level == $mybuilding->level){
+                    if($mybuilding->id == $requirement->id && $requirement->level >= $mybuilding->level){
                         $cleared_upgrade = true;
                     }
                 }
@@ -228,7 +234,7 @@ class BuildingController extends Controller
         $existingBuilding = $buildinguser;
         $level = 1;
         if($existingBuilding != null){
-            $level = $existingBuilding->level;
+            $level = $existingBuilding->level + 1;
         }
         $cleared_upgrade = false;
         $cleared_cost = true;
@@ -245,13 +251,15 @@ class BuildingController extends Controller
             ]);
         }
 
+        BuildingUser::where('user_id', auth()->user()->id)->update(['is_building' => 0]);
+
         if($building->requirements->count() == 0){
             $cleared_upgrade = true;
         }else{
             foreach ($requirements as $key => $requirement) {
                 foreach ($buildings as $key => $mybuilding) {
                     # code...
-                    if($mybuilding->id == $requirement->id && $requirement->level == $mybuilding->level){
+                    if($mybuilding->id == $requirement->id && $requirement->level >= $mybuilding->level){
                         $cleared_upgrade = true;
                     }
                 }
@@ -295,6 +303,26 @@ class BuildingController extends Controller
                 "message" => "Not able to upgrade",
                 "type" => "warning"
             ]);
+        }
+    }
+
+    public function katana()
+    {
+        # code...
+        $users = User::all();
+        // $resources = Resource::all();
+        foreach ($users as $user) {
+            foreach ($user->buildings as $building) {
+                foreach ($building->productions as $production) {
+                    foreach ($user->resources as $resource) {
+                        if($production->id == $resource->id){
+                            $myresource = $resource->pivot;
+                            $myresource->amount += (($production->pivot->produce * $building->pivot->level) * $building->multiplier) / 100;
+                            $myresource->save();
+                        }
+                    }
+                }
+            }
         }
     }
 }

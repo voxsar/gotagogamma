@@ -7,7 +7,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Building Name</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Level</th>
                         @forelse ($resources as $resource)
                             <th scope="col">{{$resource->name}}</th>
@@ -24,6 +25,7 @@
                             <td scope="col">{{$slot->id}}</td>
                             @if($slot->building != null)
                                 @if($slot->is_building == 0)
+                                <td scope="col" class="text-center"><img width="20px" src="{{asset($building->image_url)}}"></td>
                                 <td scope="col">{{$slot->building->name}}</td>
                                 <td scope="col">{{$slot->level}}</td>
                                     @forelse ($slot->building->costs as $cost)

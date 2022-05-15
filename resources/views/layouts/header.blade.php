@@ -45,8 +45,8 @@
                 @forelse (auth()->user()->resources as $resource)
                     <a href="{{route("resources.myindex")}}" class="btn btn-primary position-relative ms-4 ps-2 btn-sm">
                         {{$resource->name}}
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{$resource->pivot->amount}}
+                        <span class="position-absolute resource_cal_{{$resource->id}} top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{round($resource->pivot->amount + ((($resource->pivot->amount / 60) / 60) * now('UTC')->format('s')))}}
                         </span>
                     </a>
                 @empty
@@ -60,6 +60,7 @@
     <script>
         $(document).ready(function(){
             setTimeout(countdownloop, 1100);
+            setTimeout(produceloop, 1000);
         })
 
         function countdownloop() {
@@ -78,6 +79,37 @@
                 })
             @endif
             setTimeout(countdownloop, 1100);
+        }
+
+        @forelse (auth()->user()->resources as $resource)
+            var amount{{$resource->id}} = {{$resource->pivot->amount}};
+        @empty
+
+        @endforelse
+
+        function produceloop() {
+            @forelse (auth()->user()->buildings as $building)
+                @forelse ($building->productions as $production)
+                    @forelse (auth()->user()->resources as $resource)
+                        @if($production->id == $resource->id)
+                            var add{{$resource->id}} = {{(($production->pivot->produce * $building->pivot->level) * $building->multiplier)}} / 60 / 60
+                            var resource_date{{$resource->id}} = new Date()
+                            var secD{{$resource->id}} = resource_date{{$resource->id}}.getUTCSeconds()
+                            var perSec{{$resource->id}} = (add{{$resource->id}}/60) * secD{{$resource->id}}
+                            console.log(perSec{{$resource->id}})
+                            amount{{$resource->id}} += perSec{{$resource->id}};
+                            $(".resource_cal_{{$resource->id}}").html(Math.round(amount{{$resource->id}}))
+                        @endif
+                    @empty
+
+                    @endforelse
+                @empty
+
+                @endforelse
+            @empty
+
+            @endforelse
+            setTimeout(produceloop, 1000);
         }
     </script>
 @endpush

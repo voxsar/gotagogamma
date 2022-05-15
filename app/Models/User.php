@@ -53,7 +53,7 @@ class User extends Authenticatable
     public function buildings()
     {
         # code...
-        return $this->belongsToMany("App\Models\Building", "building_users", "user_id", "building_id")->withPivot("level");
+        return $this->belongsToMany("App\Models\Building", "building_users", "user_id", "building_id")->withPivot("level", "id");
     }
 
     public function slots()

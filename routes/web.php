@@ -23,6 +23,8 @@ Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->nam
 Route::get('resources', [ResourceController::class, 'index'])->name("resources.index");
 Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->name("resources.show");
 
+Route::get('katana', [BuildingController::class, 'katana'])->name("katana");
+
 Route::middleware(['auth'])->group(function () {
     Route::get('buildings/mymap', [BuildingController::class, 'mymap'])->name("buildings.mymap");
     Route::get('buildings/my', [BuildingController::class, 'myindex'])->name("buildings.myindex");
