@@ -25,7 +25,7 @@
                             <td scope="col">{{$slot->id}}</td>
                             @if($slot->building != null)
                                 @if($slot->is_building == 0)
-                                <td scope="col" class="text-center"><img width="20px" src="{{asset($building->image_url)}}"></td>
+                                <td scope="col" class="text-center"><img width="20px" src="{{asset($slot->building->image_url)}}"></td>
                                 <td scope="col">{{$slot->building->name}}</td>
                                 <td scope="col">{{$slot->level}}</td>
                                     @forelse ($slot->building->costs as $cost)
