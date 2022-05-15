@@ -53,6 +53,7 @@
                                 @endif
                             @else
                                 @if($slot->is_building == 0)
+                                    <td scope="col" class="text-center"><img width="20px" src="{{asset('images/icons/placeholder.png')}}"></td>
                                     <td scope="col">Empty Slot</td>
                                     <td scope="col">0</td>
                                     <td scope="col" colspan="6">N/A</td>
