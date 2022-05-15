@@ -18,11 +18,11 @@ Route::redirect('/', 'dashboard');
 
 Route::get('katana', [BuildingController::class, 'katana'])->name("katana");
 
+Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
 Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
 
     Route::get('buildings', [BuildingController::class, 'index'])->name("buildings.index");
-    Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
 
     Route::get('resources', [ResourceController::class, 'index'])->name("resources.index");
     Route::get('resources/all/{resource}', [ResourceController::class, 'show'])->name("resources.show");

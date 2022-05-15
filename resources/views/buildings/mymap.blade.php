@@ -68,7 +68,7 @@
                     @if($slot->building != null)
                         @if($slot->is_building == 0)
                             @if(auth()->user()->is_upgrading == 1)
-                                toastr["error"]('Cannot build while another build is ongoing')
+                                window.location.href = '{{route("buildings.myshow", ["buildinguser" => $slot, "building" => $slot->building])}}';
                             @else
                                 window.location.href = '{{route("buildings.myshow", ["buildinguser" => $slot, "building" => $slot->building])}}';
                             @endif
