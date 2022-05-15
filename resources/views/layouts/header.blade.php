@@ -32,8 +32,8 @@
                 </li>
             </ul>
         </div>
-        <div class="d-flex">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-md-block d-lg-block d-xl-block text-end">
                 @if(auth()->user()->upgrade_completetime != null)
                     <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm">
                         <span class="counter"></span>
