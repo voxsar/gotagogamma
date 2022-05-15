@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{route("buildings.mymap")}}">GotaGoGamma</a>
+        <a class="navbar-brand" href="{{route("buildings.mymap")}}">{{ config('app.name', 'Laravel') }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,7 +19,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >
+                    <a class="nav-link" href="{{route('market.index')}}" >
                         Marketplace
                     </a>
                 </li>
@@ -40,7 +40,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-md-block d-lg-block d-xl-block text-end">
                 @auth()
                     @if(auth()->user()->upgrade_completetime != null)
-                        <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm">
+                        <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm px-5">
                             <span class="counter"></span>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 Building
@@ -48,7 +48,7 @@
                         </a>
                     @endif
                     @forelse (auth()->user()->resources as $resource)
-                        <a href="{{route("resources.myindex")}}" class="btn btn-primary position-relative btn-sm">
+                        <a href="{{route("resources.myindex")}}" class="btn btn-primary position-relative btn-sm px-3">
                             <small>{{$resource->name}}</small>
                             <span class="position-absolute resource_cal_{{$resource->id}} top-0 start-50 translate-middle badge rounded-pill bg-danger">
                                 {{round($resource->pivot->amount + ((($resource->pivot->amount / 60) / 60) * now('UTC')->format('s')))}}
@@ -57,7 +57,7 @@
                     @empty
 
                     @endforelse
-                    <a href="{{route("logout")}}" class="btn btn-primary position-relative btn-sm">
+                    <a href="{{route("logout")}}" class="btn btn-primary position-relative btn-sm px-5">
                         <small>Logout</small>
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                             @auth

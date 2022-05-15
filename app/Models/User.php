@@ -61,4 +61,16 @@ class User extends Authenticatable
         # code...
         return $this->hasMany("App\Models\BuildingUser");
     }
+
+    public function buyers()
+    {
+        # code...
+        return $this->hasMany("App\Models\Market", "buyer_user_id");
+    }
+
+    public function sellers()
+    {
+        # code...
+        return $this->hasMany("App\Models\Market", "seller_user_id");
+    }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\MarketController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,8 @@ Route::redirect('/', 'dashboard');
 Route::get('katana', [BuildingController::class, 'katana'])->name("katana");
 
 Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
+Route::get('resources/my', [ResourceController::class, 'myindex'])->name("resources.myindex");
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
 
@@ -34,8 +37,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('buildings/upgrade/{buildinguser}/{building}', [BuildingController::class, 'upgrade'])->name("buildings.upgrade");
     Route::get('buildings/make/{buildinguser}/{building}', [BuildingController::class, 'make'])->name("buildings.make");
 
-    Route::get('resources/my', [ResourceController::class, 'myindex'])->name("resources.myindex");
     Route::get('resources/my/{resource}', [ResourceController::class, 'myshow'])->name("resources.myshow");
+
+    Route::get('market', [MarketController::class, 'index'])->name("market.index");
+    Route::get('market/create', [MarketController::class, 'create'])->name("market.create");
+    Route::post('market', [MarketController::class, 'store'])->name("market.store");
+    Route::get('market/buy/{market}', [MarketController::class, 'buy'])->name("market.buy");
+    Route::patch('market/buy/{market}', [MarketController::class, 'update'])->name("market.update");
 });
 
 require __DIR__.'/auth.php';
