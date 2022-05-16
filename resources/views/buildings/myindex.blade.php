@@ -90,9 +90,10 @@
                                     <td scope="col" class="countdown" data-count="{{auth()->user()->upgrade_completetime->valueOf()}}">Building</td>
                                     <td scope="col">{{$slot->level}} <small>(Upgrading to {{$slot->level + 1}})</small></td>
                                     @forelse ($resources as $resource)
-                                        <td scope="col" >Building in progress</td>
+                                        <td scope="col" ></td>
                                     @empty
                                     @endforelse
+                                    <td scope="col" ></td>
                                     <td scope="col">
                                         <a class="btn btn-primary btn-sm w-100" href="">Cancel</a>
                                     </td>
