@@ -23,11 +23,6 @@
                             <td>{{$requirement->pivot->level}}</td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" style="text-align: center;">
-                                No Building Requirements
-                            </td>
-                        </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -41,7 +36,7 @@
     <div class="row">
         <div class="col-md-6">
             <h4>Production based on level</h4>
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover table-bordered" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">Level</th>
@@ -68,7 +63,7 @@
         </div>
         <div class="col-md-6">
             <h4>Build Times & Resource Costs based on Level</h4>
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover table-bordered" style="100%;">
                 <thead>
                     <tr>
                         <th scope="col">Level</th>
@@ -100,7 +95,6 @@
     </div>
 </div>
 @endsection()
-
 @push("css")
     <style>
         .dtr-bs-modal{
