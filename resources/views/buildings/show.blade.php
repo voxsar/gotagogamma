@@ -100,3 +100,37 @@
     </div>
 </div>
 @endsection()
+
+@push("css")
+    <style>
+        .dtr-bs-modal{
+            width: 100vw;
+        }
+        .btn-primary{
+            background-color: var(--bs-primary) !important;
+        }
+    </style>
+@endpush
+@push("scripts")
+    <script>
+        $(document).ready( function () {
+            $('.table-hover').DataTable({
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                },
+                searching: false,
+                paging: false,
+            });
+        } );
+    </script>
+@endpush
