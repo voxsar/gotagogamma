@@ -19,20 +19,19 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="table-responsive">
 
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover dt-responsive table-bordered" style="100%;">
                     <thead>
                         <tr>
                             <th class="d-none d-md-table-cell d-lg-table-cell d-xl-table-cell" scope="col">#</th>
                             <th scope="col">Icon</th>
                             <th scope="col">Name</th>
                             @forelse ($resources as $resource)
-                                <th class="d-none d-md-table-cell d-lg-table-cell d-xl-table-cell" scope="col">{{$resource->name}}</th>
+                                <th class="" scope="col">{{$resource->name}}</th>
                             @empty
 
                             @endforelse
-                            <th class="d-none d-md-table-cell d-lg-table-cell d-xl-table-cell" scope="col">Build Time</th>
+                            <th class="" scope="col">Build Time</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -43,11 +42,11 @@
                                 <td scope="col" class="text-center"><img width="20px" src="{{asset($building->image_url)}}"></td>
                                 <td scope="col"><a href="{{route("buildings.show", $building)}}">{{$building->name}}</a></td>
                                 @forelse ($building->costs as $cost)
-                                    <td class="d-none d-md-table-cell d-lg-table-cell d-xl-table-cell" >{{(($cost->pivot->cost * 2) * $building->multiplier) / 100}}</td>
+                                    <td class="" >{{(($cost->pivot->cost * 2) * $building->multiplier) / 100}}</td>
                                 @empty
 
                                 @endforelse
-                                <td class="d-none d-md-table-cell d-lg-table-cell d-xl-table-cell" scope="col">
+                                <td class="" scope="col">
                                     <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * $speed)->format('H:i:s')}}
                                 </td>
                                 <td scope="col">
@@ -58,7 +57,6 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -67,7 +65,23 @@
     <script>
         $(document).ready( function () {
             $('.table-hover').DataTable({
-                responsive: true
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                },
+                columnDefs: [
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 }
+                ]
             });
         } );
     </script>
