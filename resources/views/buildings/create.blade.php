@@ -63,3 +63,12 @@
     </div>
 </div>
 @endsection
+@push("scripts")
+    <script>
+        $(document).ready( function () {
+            $('.table-hover').DataTable({
+                responsive: true
+            });
+        } );
+    </script>
+@endpush
