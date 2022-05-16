@@ -87,9 +87,12 @@
                                         @endif
                                     </td>
                                 @elseif($slot->is_building == 1)
-                                    <td scope="col">Building</td>
+                                    <td scope="col" class="countdown" data-count="{{auth()->user()->upgrade_completetime->valueOf()}}">Building</td>
                                     <td scope="col">{{$slot->level}} <small>(Upgrading to {{$slot->level + 1}})</small></td>
-                                    <td scope="col" colspan="6"class="countdown" data-count="{{auth()->user()->upgrade_completetime->valueOf()}}">Building in progress</td>
+                                    @forelse ($resources as $resource)
+                                        <td scope="col" >Building in progress</td>
+                                    @empty
+                                    @endforelse
                                     <td scope="col">
                                         <a class="btn btn-primary btn-sm w-100" href="">Cancel</a>
                                     </td>
