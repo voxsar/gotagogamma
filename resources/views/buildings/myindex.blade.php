@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover table-bordered" style="100%;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -40,14 +40,14 @@
                             <td scope="col">{{$slot->id}}</td>
                             @if($slot->building != null)
                                 @if($slot->is_building == 0)
-                                <td scope="col" class="text-center"><img width="20px" src="{{asset($slot->building->image_url)}}"></td>
-                                <td scope="col">{{$slot->building->name}}</td>
-                                <td scope="col">{{$slot->level}}</td>
+                                    <td scope="col">{{$slot->building->name}}</td>
+                                    <td scope="col">{{$slot->level}}</td>
                                     @forelse ($slot->building->costs as $cost)
                                         <td>{{(($cost->pivot->cost * ($slot->level + 1)) * $slot->building->multiplier) / 100}}</td>
                                     @empty
 
                                     @endforelse
+                                    <td scope="col" class="text-center"><img width="20px" src="{{asset($slot->building->image_url)}}"></td>
                                     <td scope="col">
                                         <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse(($slot->building->base * ($slot->level + 1)) * $speed)->format('H:i:s')}}
                                     </td>
@@ -60,18 +60,25 @@
                                     </td>
                                 @elseif($slot->is_building == 1)
                                     <td scope="col">Building</td>
-                                    <td scope="col">{{$slot->level}} <small>(Upgrading to {{$slot->level + 1}})</small></td>
-                                    <td scope="col" colspan="6" class="countdown" data-count="{{auth()->user()->upgrade_completetime->valueOf()}}">Building in progress</td>
+                                    <td scope="col" class="countdown" data-count="{{auth()->user()->upgrade_completetime->valueOf()}}">{{$slot->level}} <small>(Upgrading to {{$slot->level + 1}})</small></td>
+                                    @forelse ($resources as $resource)
+                                        <td scope="col" >Building in progress</td>
+                                    @empty
+                                    @endforelse
                                     <td scope="col">
                                         <a class="btn btn-primary btn-sm w-100" href="">Cancel</a>
                                     </td>
                                 @endif
                             @else
                                 @if($slot->is_building == 0)
-                                    <td scope="col" class="text-center"><img width="20px" src="{{asset('images/icons/placeholder.png')}}"></td>
                                     <td scope="col">Empty Slot</td>
                                     <td scope="col">0</td>
-                                    <td scope="col" colspan="6">N/A</td>
+                                    @forelse ($resources as $resource)
+                                        <td scope="col" ></td>
+                                    @empty
+                                    @endforelse
+                                    <td scope="col" class="text-center"><img width="20px" src="{{asset('images/icons/placeholder.png')}}"></td>
+                                    <td scope="col"></td>
                                     <td scope="col">
                                         @if(auth()->user()->is_upgrading == 1)
                                             <a class="btn btn-primary btn-sm w-100 btn-build disabled" href="{{route("buildings.create", $slot->id)}}">Build</a>
