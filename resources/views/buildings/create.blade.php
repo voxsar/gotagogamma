@@ -65,6 +65,9 @@
         .dtr-bs-modal{
             width: 100vw;
         }
+        .btn-primary{
+            background-color: var(--bs-primary) !important;
+        }
     </style>
 @endpush
 @push("scripts")
