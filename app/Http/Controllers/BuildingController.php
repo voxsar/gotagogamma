@@ -22,6 +22,7 @@ class BuildingController extends Controller
         $data = array(
             'resources' => Resource::all(),
             'buildings' => Building::all(),
+            'speed' => config('app.speed', 1),
         );
         return view("buildings.index", $data);
     }
@@ -38,6 +39,7 @@ class BuildingController extends Controller
             'resources' => Resource::all(),
             'buildings' => Building::all(),
             'building' => $building,
+            'speed' => config('app.speed', 1),
         );
         return view("buildings.show", $data);
     }
@@ -53,7 +55,8 @@ class BuildingController extends Controller
         $data = array(
             'resources' => Resource::all(),
             'buildings' => auth()->user()->buildings,
-            'slots' => auth()->user()->slots
+            'slots' => auth()->user()->slots,
+            'speed' => config('app.speed', 1),
         );
         return view("buildings.mymap", $data);
     }
@@ -69,7 +72,8 @@ class BuildingController extends Controller
         $data = array(
             'resources' => Resource::all(),
             'buildings' => auth()->user()->buildings,
-            'slots' => auth()->user()->slots
+            'slots' => auth()->user()->slots,
+            'speed' => config('app.speed', 1),
         );
         return view("buildings.myindex", $data);
     }
@@ -86,7 +90,8 @@ class BuildingController extends Controller
             'resources' => Resource::all(),
             'buildings' => Building::all(),
             'building' => $building,
-            'buildinguser' => $buildinguser
+            'buildinguser' => $buildinguser,
+            'speed' => config('app.speed', 1),
         );
         return view("buildings.myshow", $data);
     }
@@ -99,6 +104,7 @@ class BuildingController extends Controller
     public function create(BuildingUser $buildinguser)
     {
         //
+        $speed = config('app.speed', 1);
         $buildings = auth()->user()->buildings;
         $excepts = [];
         foreach ($buildings as $b) {
@@ -144,6 +150,7 @@ class BuildingController extends Controller
             'resources' => Resource::all(),
             'slot' => $buildinguser->id,
             'buildings' => $eligiblebulldings,
+            'speed' => $speed,
         );
         return view("buildings.create", $data);
     }
@@ -162,6 +169,7 @@ class BuildingController extends Controller
         $buildings = auth()->user()->buildings;
         $resources = auth()->user()->resources;
         $requirements = $building->requirements;
+        $speed = config('app.speed', 1);
 
         if($user->is_upgrading == 1){
             return redirect()->route("buildings.mymap")->with([
@@ -207,7 +215,7 @@ class BuildingController extends Controller
                         $myresource->amount += (($cost->pivot->cost * $level) * $building->multiplier) / 100;
                         $myresource->save();
                         $user->is_upgrading = 1;
-                        $user->upgrade_completetime = now()->addSeconds($building->base * $level);
+                        $user->upgrade_completetime = now()->addSeconds(($building->base * $level) * $speed);
                         $user->save();
                         $buildinguser->is_building = 1;
                         $buildinguser->save();
@@ -243,6 +251,7 @@ class BuildingController extends Controller
         $buildings = auth()->user()->buildings;
         $resources = auth()->user()->resources;
         $requirements = $building->requirements;
+        $speed = config('app.speed', 1);
 
         if($user->is_upgrading == 1){
             return back()->with([
@@ -288,7 +297,7 @@ class BuildingController extends Controller
                         $myresource->amount += (($cost->pivot->cost * $level) * $building->multiplier) / 100;
                         $myresource->save();
                         $user->is_upgrading = 1;
-                        $user->upgrade_completetime = now()->addSeconds($building->base * $level);
+                        $user->upgrade_completetime = now()->addSeconds(($building->base * $level) * $speed);
                         $user->save();
                         $buildinguser->is_building = 1;
                         $buildinguser->save();

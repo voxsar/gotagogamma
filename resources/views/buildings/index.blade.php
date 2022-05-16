@@ -44,7 +44,7 @@
 
                             @endforelse
                             <td scope="col">
-                                <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * 1)->format('H:i:s')}}
+                                <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * $speed)->format('H:i:s')}}
                             </td>
                         </tr>
                     @empty

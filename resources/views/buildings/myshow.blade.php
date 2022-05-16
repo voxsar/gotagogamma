@@ -55,7 +55,6 @@
                         @empty
 
                         @endforelse
-                        <th scope="col">Build Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,9 +72,6 @@
                             @empty
 
                             @endforelse
-                            <td scope="col">
-                                <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * $c)->format('H:i:s')}}
-                            </td>
                         </tr>
                     @endfor
                 </tbody>
@@ -111,7 +107,7 @@
 
                             @endforelse
                             <td scope="col">
-                                <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($building->base * $c)->format('H:i:s')}}
+                                <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse(($building->base * $c) * $speed)->format('H:i:s')}}
                             </td>
                         </tr>
                     @endfor

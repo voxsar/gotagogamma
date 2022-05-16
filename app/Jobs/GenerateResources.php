@@ -37,15 +37,22 @@ class GenerateResources implements ShouldQueue
     {
         //
         $users = User::all();
+        $speed = config('app.speed', 1);
+        $upperlimit = config('app.upperlimit', 1);
         // $resources = Resource::all();
         foreach ($users as $user) {
             foreach ($user->buildings as $building) {
                 foreach ($building->productions as $production) {
                     foreach ($user->resources as $resource) {
+                        $myresource = $resource->pivot;
                         if($production->id == $resource->id){
-                            $myresource = $resource->pivot;
-                            $myresource->amount += (($production->pivot->produce * $building->pivot->level) * $building->multiplier) / 60;
-                            $myresource->save();
+                            if($myresource->amount < $upperlimit){
+                                $myresource->amount += (($production->pivot->produce * $building->pivot->level) * $building->multiplier) / 60;
+                                $myresource->save();
+                            }else{
+                                $myresource->amount = $upperlimit;
+                                $myresource->save();
+                            }
                         }
                     }
                 }

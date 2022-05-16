@@ -40,7 +40,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-md-block d-lg-block d-xl-block text-end">
                 @auth()
                     @if(auth()->user()->upgrade_completetime != null)
-                        <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm px-5">
+                        <a href="#" class="headcount btn btn-primary position-relative ms-5 me-2 ps-2 btn-sm">
                             <span class="counter"></span>
                             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                                 Building
@@ -78,7 +78,12 @@
     <script>
         $(document).ready(function(){
             setTimeout(countdownloop, 1100);
-            setTimeout(produceloop, 1000);
+            @auth()
+                @forelse (auth()->user()->resources as $resource)
+                    setTimeout(produceloop{{$resource->id}}, 1000);
+                @empty
+                @endforelse
+            @endauth
         })
 
         function countdownloop() {
@@ -90,7 +95,6 @@
                         var diff = count - now
                         if(diff >= 0){
                             var sec = new Date(diff)
-                            console.log(sec)
                             $(this).find("span.counter").html(sec.getUTCHours()+":"+sec.getUTCMinutes()+":"+sec.getUTCSeconds()+" remaining")
                         }else{
                             $(this).remove()
@@ -103,39 +107,38 @@
             @endauth
             setTimeout(countdownloop, 1100);
         }
-        @auth()
+
+@auth()
+    @forelse (auth()->user()->buildings as $building)
+        @forelse ($building->productions as $production)
             @forelse (auth()->user()->resources as $resource)
                 var amount{{$resource->id}} = {{$resource->pivot->amount}};
+                @if($production->id == $resource->id)
+                    function produceloop{{$resource->id}}() {
+                        var upperlimit = {{config('app.upperlimit', 1)}};
+
+                        if(amount{{$resource->id}} <= upperlimit){
+                            var add{{$resource->id}} = {{(($production->pivot->produce * $building->pivot->level) * $building->multiplier)}} / 60 / 60
+                            var resource_date{{$resource->id}} = new Date()
+                            var secD{{$resource->id}} = resource_date{{$resource->id}}.getUTCSeconds()
+                            var perSec{{$resource->id}} = (add{{$resource->id}}/60) * secD{{$resource->id}}
+                            amount{{$resource->id}} += perSec{{$resource->id}}
+
+                            $(".resource_cal_{{$resource->id}}").html(Math.round(amount{{$resource->id}}))
+                        }
+                        setTimeout(produceloop{{$resource->id}}, 1000);
+                    }
+                @endif
             @empty
 
             @endforelse
-        @endauth
+        @empty
 
-        function produceloop() {
-            @auth()
-                @forelse (auth()->user()->buildings as $building)
-                    @forelse ($building->productions as $production)
-                        @forelse (auth()->user()->resources as $resource)
-                            @if($production->id == $resource->id)
-                                var add{{$resource->id}} = {{(($production->pivot->produce * $building->pivot->level) * $building->multiplier)}} / 60 / 60
-                                var resource_date{{$resource->id}} = new Date()
-                                var secD{{$resource->id}} = resource_date{{$resource->id}}.getUTCSeconds()
-                                var perSec{{$resource->id}} = (add{{$resource->id}}/60) * secD{{$resource->id}}
-                                console.log(perSec{{$resource->id}})
-                                amount{{$resource->id}} += perSec{{$resource->id}};
-                                $(".resource_cal_{{$resource->id}}").html(Math.round(amount{{$resource->id}}))
-                            @endif
-                        @empty
+        @endforelse
+    @empty
 
-                        @endforelse
-                    @empty
+    @endforelse
+@endauth
 
-                    @endforelse
-                @empty
-
-                @endforelse
-            @endauth
-            setTimeout(produceloop, 1000);
-        }
     </script>
 @endpush

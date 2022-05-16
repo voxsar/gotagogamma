@@ -49,7 +49,7 @@
 
                                     @endforelse
                                     <td scope="col">
-                                        <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse($slot->building->base * ($slot->level + 1))->format('H:i:s')}}
+                                        <i class="bi bi-alarm"></i> {{Carbon\Carbon::parse(($slot->building->base * ($slot->level + 1)) * $speed)->format('H:i:s')}}
                                     </td>
                                     <td scope="col">
                                         @if(auth()->user()->is_upgrading == 1)
