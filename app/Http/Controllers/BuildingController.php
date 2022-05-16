@@ -334,4 +334,9 @@ class BuildingController extends Controller
             }
         }
     }
+
+    public function help()
+    {
+        return view("help.index");
+    }
 }

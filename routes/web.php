@@ -21,6 +21,7 @@ Route::get('katana', [BuildingController::class, 'katana'])->name("katana");
 
 Route::get('buildings/all/{building}', [BuildingController::class, 'show'])->name("buildings.show");
 Route::get('resources/my', [ResourceController::class, 'myindex'])->name("resources.myindex");
+Route::get('help', [BuildingController::class, 'help'])->name("help");
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', 'buildings/mymap')->middleware(['auth'])->name('dashboard');
