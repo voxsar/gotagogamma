@@ -28,11 +28,6 @@
                             <td>{{$requirement->pivot->level}}</td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" style="text-align: center;">
-                                No Building Requirements
-                            </td>
-                        </tr>
                     @endforelse
                 </tbody>
             </table>
