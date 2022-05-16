@@ -94,6 +94,7 @@
                                     @empty
                                     @endforelse
                                     <td scope="col" ></td>
+                                    <td scope="col" ></td>
                                     <td scope="col">
                                         <a class="btn btn-primary btn-sm w-100" href="">Cancel</a>
                                     </td>
